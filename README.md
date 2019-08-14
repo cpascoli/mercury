@@ -1,16 +1,18 @@
 # Mercury Code Challenge
 
 
-This is a Java/SpringBoot implementatin of the Mercury code challenge.
+This is a Java/SpringBoot implementation of the Mercury code challenge.
 
-The application is organised in the following layers that can be tested indepenently.
+Configuration is provided in a YAML file ```resources/application.yml```
+
+The application is organised in the following layers that can be tested indepenently:
 
 
 - **REST API**
 	- Runs an embeded webserver on **localhost:8080**
-	- Exposes the WithdrawBalance API , getUser API and Ping API (usable for Health checks)
+	- Exposes the WithdrawBalance API as well as GetUser and Ping API useful for testing and health checks.
 - **Service Layer**
-    - Here lives the ```RiskEngineServiceImpl``` service. This service.
+    - Here lives the ```RiskEngineServiceImpl``` service.
     - The service exposes the WithdrawBalance API as defined in the interface ```RiskEngineService``` 
     - It connects to the **Kafka** cluser on **localhost:9092** and handles ```TradeSettlementMessage``` messages sent to topic **mercury.t**
     - I've added an ```orderId``` field to. ```WithdrawBalanceRequest``` and ```TradeSettlementMessage``` messages to allow to reconcile the sell token balance once a trade gets settled.
